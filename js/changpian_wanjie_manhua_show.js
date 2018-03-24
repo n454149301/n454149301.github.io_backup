@@ -37,6 +37,8 @@ if (index_parm.split ("=")[0] != "index") {
 }
 var index = index_parm.split ("=")[1];
 
+document.getElementsByTagName ("title")[0].innerHTML = "世纪伯乐的小站:" + decodeURI (name);
+
 var articles = document.getElementById ("manhua_list");
 articles.innerHTML = "";
 

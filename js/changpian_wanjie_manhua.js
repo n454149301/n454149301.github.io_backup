@@ -19,6 +19,8 @@ var manhua_list = [];
 
 flush_function = show_list;
 
+document.getElementsByTagName ("title")[0].innerHTML = "世纪伯乐的小站:长篇漫画列表";
+
 function show_list () {
 	let manhua_num = page_num * page_max_manhua_num;
 	let manhua_max_num = page_num * page_max_manhua_num + 20;

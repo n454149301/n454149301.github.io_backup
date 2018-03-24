@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>世纪伯乐的小站</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+	<nav>
+	</nav>
+	<main>
+		<video id="v1" controls="controls">
+		</video>
+		<button onclick="get(1)">hehe</button>
+		<script>
+			var video_data = [];
+			function get (file_name) {
+				xhr=new XMLHttpRequest();
+				console.log ('../video/' + file_name + ".mp4")
+				xhr.open ("GET", '../video/' + file_name + ".mp4", true);
+				xhr.responseType = 'blob';
+
+				xhr.onload = function (e) {
+					if (file_name == 2) {
+						video_data.push(this.response);
+						console.log (video_data);
+
+						var video = document.getElementById ("v1");
+						var blob = new Blob (video_data, {type: 'video/mp4'});
+						console.log (blob);
+						v1.src = window.URL.createObjectURL (blob);
+						video.autoplay = true;
+
+					} else {
+						console.log (video_data)
+						video_data.push (this.response)
+						console.log (video_data)
+						console.log (video_data[0])
+						get (file_name + 1);
+					}
+				}
+
+				xhr.send ()
+			}
+		</script>
+	</main>
+</div>
+<footer>
+</footer>
+</body>
+</html>
+

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>世纪伯乐的小站</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="../image/favicon.png">
+<link href="../css/font-awesome.min.css" rel="stylesheet">
+<script src="../js/jquery-3.2.1.min.js"></script>
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<script src="../js/bootstrap.min.js"></script>
+<link href="../css/reset.css" rel="stylesheet">
+<link href="../css/main.css" rel="stylesheet">
+</head>
+<body>
+<div class="wrap hidden-prince">
+	<nav class="page-navigation">
+	<div class="nav-container">
+		<div class="page-header-logo">
+			<h1 class="prince-log">
+			<a class="home-link">世纪伯乐的漫画</a>
+			</h1>
+		</div>
+		<button type="button" data-toggle="collapse" data-target=".main-nav-items" class="navbar-toggle">
+		<span class="sr-only">Toggle navigation</span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		</button>
+		<ul class="collapse navbar-collapse main-nav-items">
+			<li class="menu-item">
+			<a href="../" target="_self">主页</a>
+			</li>
+			<li class="menu-item">
+			<a href="manhua.html" target="_self">漫画</a>
+			</li>
+			<li class="menu-item">
+			<a href="../web_database_changpian_wanjie_manhua" target="_self">长篇漫画</a>
+			</li>
+		</ul>
+	</div>
+	</nav>
+	<main class="prince-container">
+		<div class="paginator"></div>
+
+
+		<div id="manhua_list" class="articles"></div>
+		<div class="paginator"></div>
+	</main>
+</div>
+<footer class="hidden-prince">
+<div class="copyright">
+	<input id="search_manhua_input" onkeydown="search_manhua_enter ()"></input>
+	<button id="search_manhua_botton" onclick="search_manhua ()">搜索漫画</button>
+	<b><i>世纪伯乐的小站，来源请注明出处，侵权请告知：naonao800@163.com</i></b>
+</div>
+<script src="../js/paginator.js"></script>
+<script src="../js/manhua.js"></script>
+</footer>
+</body>
+</html>
+

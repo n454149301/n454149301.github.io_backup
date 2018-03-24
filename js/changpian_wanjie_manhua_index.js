@@ -59,28 +59,26 @@ article.appendChild (loading);
 function get_manhua (num) {
 	let xhr = new XMLHttpRequest ();
 	// xhr.open ("GET", "../manhua/" + list_num + "/" + name + "/" + name + num + ".jpg");
-	xhr.open ("GET", "https://raw.githubusercontent.com/n454149301/web_database_duanpian_lingsui_manhua" + list_num + "/master/manhua/" + name + "/" + name + num + ".jpg");
+	xhr.open ("GET", "https://raw.githubusercontent.com/n454149301/web_database_changpian_wanjie_manhua" + list_num + "/master/manhua/" + name + "/" + ("0000" + (num + 1)).substr (-4) + "/001.jpg");
 	xhr.responseType = 'blob';
 	xhr.onload = function (e) {
 		if (xhr.readyState == 4) {
 			if (xhr.status == 200) {
-				// console.log (manhua_list)
+				xhr.abort ();
 				var entry_div = document.createElement ("div");
 				entry.appendChild (entry_div);
 
-				var entry_img = document.createElement ("img");
-				entry_img.setAttribute ("src", window.URL.createObjectURL (this.response));
-				// console.log (entry)
-				entry_div.appendChild (entry_img);
-				// console.log (entry)
-				if (num == 22) {
-					// return
-				}
+				var entry_a = document.createElement ("a");
+				entry_a.setAttribute ("href", "changpian_wanjie_manhua_show.html?list_num=" + list_num + "&name=" + name + "&index=" + ("000" + (num + 1)).substr (-3));
+				entry_a.setAttribute ("target", "blank");
+				entry_a.innerHTML = ("000" + (num + 1)).substr (-3);
+				entry_div.appendChild (entry_a);
 
 				get_manhua (num + 1);
 			} else {
 				if (xhr.status == 404) {
 					loading.innerHTML = "没有了...";
+
 					return
 				}
 				get_manhua (num);
@@ -95,4 +93,3 @@ function get_manhua (num) {
 }
 
 get_manhua (0);
-

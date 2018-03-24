@@ -30,6 +30,13 @@ if (name_parm.split ("=")[0] != "name") {
 }
 var name = name_parm.split ("=")[1];
 
+var index_parm = url.substr (1).split ("&")[2];
+if (index_parm.split ("=")[0] != "index") {
+	console.log ("参数获取失败");
+	throw SyntaxError();
+}
+var index = index_parm.split ("=")[1];
+
 var articles = document.getElementById ("manhua_list");
 articles.innerHTML = "";
 
@@ -56,10 +63,37 @@ loading.setAttribute ("class", "post-title");
 loading.innerHTML = "加载中...";
 article.appendChild (loading);
 
+// 所有页码所在位置
+var paginators = document.getElementsByClassName ("paginator");
+
+for (let i = 0; i < paginators.length; i++) {
+	if (i == paginators.length) {
+		break;
+	}
+	let main = document.createElement ("div");
+	main.setAttribute ("class", "next-wrap col-md-6 col-xs-6 col-md-offset-6 col-xs-offset-6");
+
+	paginators[i].appendChild (main);
+
+	if (index - 1 > 0) {
+		let tmp = document.createElement ("a");
+		tmp.setAttribute ("class", "next-page");
+		tmp.href = "changpian_wanjie_manhua_show.html?list_num=" + list_num + "&name=" + name + "&index=" + ("000" + (parseInt (index) - 1)).substr (-3);
+		tmp.innerHTML = "上一章";
+		main.appendChild (tmp);
+	}
+
+	let tmp = document.createElement ("a");
+	tmp.setAttribute ("class", "next-page");
+	tmp.href = "changpian_wanjie_manhua_show.html?list_num=" + list_num + "&name=" + name + "&index=" + ("000" + (parseInt (index) + 1)).substr (-3);
+	tmp.innerHTML = "下一章";
+	main.appendChild (tmp);
+}
+
 function get_manhua (num) {
 	let xhr = new XMLHttpRequest ();
 	// xhr.open ("GET", "../manhua/" + list_num + "/" + name + "/" + name + num + ".jpg");
-	xhr.open ("GET", "https://raw.githubusercontent.com/n454149301/web_database_duanpian_lingsui_manhua" + list_num + "/master/manhua/" + name + "/" + name + num + ".jpg");
+	xhr.open ("GET", "https://raw.githubusercontent.com/n454149301/web_database_changpian_wanjie_manhua" + list_num + "/master/manhua/" + name + "/" + ("0000" + index).substr (-4) + "/" + ("000" + (num + 1)).substr (-3) + ".jpg");
 	xhr.responseType = 'blob';
 	xhr.onload = function (e) {
 		if (xhr.readyState == 4) {
@@ -95,4 +129,3 @@ function get_manhua (num) {
 }
 
 get_manhua (0);
-

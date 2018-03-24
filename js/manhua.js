@@ -12,7 +12,7 @@ window.addEventListener ("scroll", function (e) {
 });
 
 // 漫画列表数量
-var manhua_list_num = 6;
+var manhua_list_num = 0;
 
 // 漫画列表总表
 var manhua_list = [];
@@ -65,7 +65,7 @@ function show_list () {
 
 		let entry_p_a_img = document.createElement ("img");
 		// entry_p_a_img.setAttribute ("src", "../manhua/" + manhua_list[i][1] + "/" + manhua_list[i][0] + "/" + manhua_list[i][0] + "0.jpg");
-		entry_p_a_img.setAttribute ("src", "https://raw.githubusercontent.com/n454149301/n454149301.github.io/master/manhua/" + manhua_list[i][1] + "/" + manhua_list[i][0] + "/" + manhua_list[i][0] + "0.jpg");
+		entry_p_a_img.setAttribute ("src", "https://raw.githubusercontent.com/n454149301/web_database_duanpian_lingsui_manhua" + manhua_list[i][1] + "/master/manhua/" + manhua_list[i][0] + "/" + manhua_list[i][0] + "0.jpg");
 		entry_p_a_img.setAttribute ("height", "400");
 		entry_p_a_img.setAttribute ("width", "400");
 		entry_p_a.appendChild (entry_p_a_img);
@@ -87,7 +87,7 @@ function get_list (num) {
 	}
 
 	let xhr = new XMLHttpRequest ();
-	xhr.open ("GET", "../manhua/" + num + "/name.txt");
+	xhr.open ("GET", "../web_database_duanpian_lingsui_manhua/" + num + "/list.txt");
 	xhr.onreadystatechange = function () {
 		if (xhr.readyState == 4) {
 			if (xhr.status == 200) {
@@ -108,7 +108,14 @@ function get_list (num) {
 				}
 
 				get_list (num-1);
+			} else {
+				if (xhr.status == 404) {
+					return
+				}
+				get_list (num);
 			}
+		} else {
+			return
 		}
 	}
 	xhr.send ();

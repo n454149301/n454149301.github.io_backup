@@ -54,7 +54,7 @@ article.appendChild (entry);
 function get_manhua (num) {
 	let xhr = new XMLHttpRequest ();
 	// xhr.open ("GET", "../manhua/" + list_num + "/" + name + "/" + name + num + ".jpg");
-	xhr.open ("GET", "https://raw.githubusercontent.com/n454149301/n454149301.github.io/master/manhua/" + list_num + "/" + name + "/" + name + num + ".jpg");
+	xhr.open ("GET", "https://raw.githubusercontent.com/n454149301/web_database_duanpian_lingsui_manhua" + list_num + "/master/manhua/" + name + "/" + name + num + ".jpg");
 	xhr.responseType = 'blob';
 	xhr.onload = function (e) {
 		if (xhr.readyState == 4) {
@@ -72,11 +72,15 @@ function get_manhua (num) {
 					// return
 				}
 
-				get_manhua (num + 1)
+				get_manhua (num + 1);
 			} else {
-				console.log (xhr.readyState)
+				if (xhr.status == 404) {
+					return
+				}
+				get_manhua (num);
 			}
 		} else {
+			get_manhua (num);
 			return
 		}
 	}

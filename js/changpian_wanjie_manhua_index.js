@@ -63,8 +63,8 @@ function get_manhua (num) {
 	// xhr.open ("GET", "../manhua/" + list_num + "/" + name + "/" + name + num + ".jpg");
 	xhr.open ("GET", "https://raw.githubusercontent.com/n454149301/web_database_changpian_wanjie_manhua" + list_num + "/master/manhua/" + name + "/" + ("0000" + (num + 1)).substr (-4) + "/001.jpg");
 	xhr.responseType = 'blob';
-	xhr.onload = function (e) {
-		if (xhr.readyState == 4) {
+	xhr.onreadystatechange = function () {
+		if (xhr.readyState == 3) {
 			if (xhr.status == 200) {
 				xhr.abort ();
 				var entry_div = document.createElement ("div");
@@ -85,9 +85,6 @@ function get_manhua (num) {
 				}
 				get_manhua (num);
 			}
-		} else {
-			get_manhua (num);
-			return
 		}
 	}
 

@@ -12,7 +12,7 @@ window.addEventListener ("scroll", function (e) {
 });
 
 // 漫画列表数量
-var manhua_list_num = 7;
+var manhua_list_num = 8;
 
 // 漫画列表总表
 var manhua_list = [];

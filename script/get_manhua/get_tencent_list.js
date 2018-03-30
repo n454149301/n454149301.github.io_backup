@@ -15,7 +15,7 @@ function get_manhua_list (my_document) {
 
 function get_next (next_num) {
 	xhr=new XMLHttpRequest();
-	xhr.open ("GET", "http://ac.qq.com/Comic/all/finish/2/search/time/vip/1/page/" + next_num, true);
+	xhr.open ("GET", "http://ac.qq.com/Comic/all/finish/1/search/time/vip/1/page/" + next_num, true);
 	xhr.send ()
 	xhr.onreadystatechange = function () {
 		if (xhr.readyState == 4 && xhr.status == 200) {

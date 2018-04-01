@@ -88,7 +88,7 @@ function get_video (file_num, video_num) {
 			// console.log (video_data[0])
 			document.getElementById ("ready_get_num").innerHTML = file_num;
 
-			if (file_num == 0) {
+			if (file_num <= 10) {
 				var blob = new Blob (video_data, {type: 'video/mkv'});
 				video.src = window.URL.createObjectURL (blob);
 				tracks[video_num - 1].track.mode = "showing";

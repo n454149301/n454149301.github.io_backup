@@ -60,8 +60,8 @@ video.onended = function () {
 	video.currentTime = video_current_time;
 
 	wait_flag = 1;
+	video.play ();
 	setTimeout(function () {
-		video.play ();
 		wait_flag = 0;
 	}, 5000);
 }

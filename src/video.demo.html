@@ -10,9 +10,12 @@
 	<nav>
 	</nav>
 	<main>
+		<p id="ready_all_num">碎片共：6</p>
+		<p id="ready_status">已加载视频碎片：<span id="ready">0</span></p>
 		<video id="v1" controls="controls">
+			<track src="../video/hehe.vtt" srclang="zh" kind="subtitles" default></track>
 		</video>
-		<button onclick="get(1)">hehe</button>
+		<button onclick="get(1)">播放视频</button>
 		<script>
 			var video_data = [];
 			function get (file_name) {
@@ -22,21 +25,22 @@
 				xhr.responseType = 'blob';
 
 				xhr.onload = function (e) {
-					if (file_name == 2) {
+					if (this.response.type === "text/html") {
 						video_data.push(this.response);
 						console.log (video_data);
+						document.getElementById ("ready_status").innerHTML = "加载完毕"
 
 						var video = document.getElementById ("v1");
 						var blob = new Blob (video_data, {type: 'video/mkv'});
 						console.log (blob);
 						v1.src = window.URL.createObjectURL (blob);
-						video.autoplay = true;
-
+						// video.autoplay = true;
 					} else {
 						console.log (video_data)
-						video_data.push (this.response)
+						video_data[file_name - 1] = this.response;
 						console.log (video_data)
 						console.log (video_data[0])
+						document.getElementById ("ready").innerHTML = file_name;
 						get (file_name + 1);
 					}
 				}

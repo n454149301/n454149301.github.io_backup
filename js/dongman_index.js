@@ -11,6 +11,9 @@ window.addEventListener ("scroll", function (e) {
 	new_scroll_position = last_scroll_position;
 });
 
+// 动漫列表总表
+var dongman_list = [];
+
 var url = window.location.search
 if (url.indexOf("?") == -1) {
 	console.log ("参数获取失败");
@@ -33,7 +36,7 @@ var name = name_parm.split ("=")[1];
 
 document.getElementsByTagName ("title")[0].innerHTML = "世纪伯乐的小站:" + decodeURI (name);
 
-var articles = document.getElementById ("manhua_list");
+var articles = document.getElementById ("dongman_list");
 articles.innerHTML = "";
 
 var article = document.createElement ("article");
@@ -59,37 +62,36 @@ loading.setAttribute ("class", "post-title");
 loading.innerHTML = "加载中...";
 article.appendChild (loading);
 
-function get_manhua (num) {
+function get_list () {
 	let xhr = new XMLHttpRequest ();
-	// xhr.open ("GET", "../manhua/" + list_num + "/" + name + "/" + name + num + ".jpg");
-	xhr.open ("GET", "https://raw.githubusercontent.com/n454149301/web_database_changpian_wanjie_manhua" + list_num + "/master/manhua/" + name + "/" + ("0000" + (num + 1)).substr (-4) + "/001.jpg", true);
-	xhr.responseType = 'blob';
+	xhr.open ("GET", "../dongman/" + list_num + "/list.txt");
 	xhr.onreadystatechange = function () {
-		if (xhr.readyState == 3) {
+		if (xhr.readyState == 4) {
 			if (xhr.status == 200) {
-				var entry_div = document.createElement ("div");
-				entry.appendChild (entry_div);
+				let tmp = [];
+				// console.log (xhr.responseText)
+				tmp = xhr.responseText.split ("\n");
+				for (let i = 0; i < tmp.length - 1; i++) {
+					var entry_div = document.createElement ("div");
+					entry.appendChild (entry_div);
 
-				var entry_a = document.createElement ("a");
-				entry_a.setAttribute ("href", "changpian_wanjie_manhua_show.html?list_num=" + list_num + "&name=" + name + "&index=" + ("000" + (num + 1)).substr (-3));
-				entry_a.setAttribute ("target", "blank");
-				entry_a.innerHTML = ("000" + (num + 1)).substr (-3);
-				entry_div.appendChild (entry_a);
-
-				xhr.abort ();
-				get_manhua (num + 1);
-			} else if (xhr.status == 404) {
-				loading.innerHTML = "没有了...";
-				xhr.abort ();
-
+					var entry_a = document.createElement ("a");
+					entry_a.setAttribute ("href", "dongman_show.html?list_num=" + list_num + "&name=" + name + "&index=" + i)
+					entry_a.setAttribute ("target", "blank");
+					entry_a.innerHTML = tmp[i]
+					entry_div.appendChild (entry_a);
+					loading.innerHTML = "没有了...";
+				}
 			} else {
-				xhr.abort ();
-				get_manhua (num);
+				if (xhr.status == 404) {
+					return
+				}
 			}
+		} else {
+			return
 		}
 	}
-
 	xhr.send ();
 }
 
-get_manhua (0);
+get_list ();

@@ -180,6 +180,12 @@ nav {
   overflow: hidden;
 }
 
+video {
+	width: 400px;
+	height: auto;
+	text-align: center;
+}
+
 main {
   padding-top: 80px;
   width: 100%;

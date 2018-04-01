@@ -1,5 +1,3 @@
-// 一页显示最大漫画数量
-var page_max_manhua_num = 20;
 // 当前总页数
 var page_max_num = 0;
 // 当前页数

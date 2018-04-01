@@ -11,6 +11,9 @@ window.addEventListener ("scroll", function (e) {
 	new_scroll_position = last_scroll_position;
 });
 
+// 一页显示最大漫画数量
+var page_max_manhua_num = 20;
+
 // 漫画列表数量
 var manhua_list_num = 15;
 

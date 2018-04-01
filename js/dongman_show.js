@@ -40,6 +40,42 @@ var video = document.getElementsByTagName ("video")[0];
 var tracks = [];
 var video_current_time = 0;
 
+video.ontimeupdate = function () {
+	if (video.currentTime == video.duration) {
+			console.log ("fuck1")
+			console.log (video.currentTime);
+			console.log (video_current_time);
+	} else {
+			console.log ("fuck2")
+			console.log (video.currentTime);
+			console.log (video_current_time);
+		video_current_time = video.currentTime;
+	}
+}
+
+var wait_flag = 0;
+video.onended = function () {
+	if (wait_flag != 0) {
+		return;
+	}
+
+	var blob = new Blob (video_data, {type: 'video/mkv'});
+
+	video.src = window.URL.createObjectURL (blob);
+	video.currentTime = video_current_time;
+
+	console.log ("fuck");
+	console.log (video.error)
+	console.log (video.currentTime);
+	console.log (video_current_time);
+	console.log ("fuck end");
+	wait_flag = 1;
+	setTimeout(function () {
+		video.play ();
+		wait_flag = 0;
+	}, 5000);
+}
+
 function get_video (file_num, video_num) {
 	xhr=new XMLHttpRequest();
 	console.log ("GET", 'https://raw.githubusercontent.com/n454149301/web_database_dongman' + list_num + '_' + index + '/master/' + video_num + '/' + file_num + '.mkv', true);
@@ -49,10 +85,8 @@ function get_video (file_num, video_num) {
 	xhr.onload = function (e) {
 			if ((this.response.type === "text/xml") || (this.response.type === "text/html")) {
 			console.log (video.currentTime);
-			video_current_time = video.currentTime;
 			video.src = window.URL.createObjectURL (blob);
 			video.autoplay = true;
-			video.currentTime = video_current_time;
 			}
 
 			console.log (video_data)
@@ -61,17 +95,14 @@ function get_video (file_num, video_num) {
 			console.log (video_data[0])
 			document.getElementById ("ready_get_num").innerHTML = file_num;
 
-			var blob = new Blob (video_data, {type: 'video/mkv'});
-
-			console.log (video.currentTime);
-			video_current_time = video.currentTime;
-			video.src = window.URL.createObjectURL (blob);
-			tracks[video_num - 1].track.mode = "showing";
-			video.autoplay = true;
-			video.currentTime = video_current_time;
-
-			console.log (file_num);
+			if (file_num == 0) {
+				var blob = new Blob (video_data, {type: 'video/mkv'});
+				video.src = window.URL.createObjectURL (blob);
+				tracks[video_num - 1].track.mode = "showing";
+				video.currentTime = video_current_time;
+			}
 			get_video (file_num + 1, video_num);
+
 		}
 
 	xhr.send ()

@@ -1,4 +1,5 @@
 var video_data = [];
+var now_video_num = 0;
 
 var url = window.location.search
 if (url.indexOf("?") == -1) {
@@ -70,6 +71,11 @@ video.onended = function () {
 }
 
 function get_video (file_num, video_num) {
+	if ((file_num == 0) && (now_video_num == video_num)) {
+		return;
+	}
+
+	now_video_num = video_num;
 	xhr=new XMLHttpRequest();
 	var fileReader = new FileReader ();
 	// console.log ("GET", 'https://raw.githubusercontent.com/n454149301/web_database_dongman' + list_num + '_' + index + '/master/' + video_num + '/' + file_num + '.mkv', true);

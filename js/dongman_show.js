@@ -42,7 +42,6 @@ var video_current_time = 0;
 
 video.ontimeupdate = function () {
 	if (video.currentTime == video.duration) {
-		video_current_time = 0;
 	} else {
 		video_current_time = video.currentTime;
 	}
@@ -57,6 +56,8 @@ video.onended = function () {
 	var blob = new Blob (video_data, {type: 'video/mkv'});
 
 	video.src = window.URL.createObjectURL (blob);
+	console.log (video_current_time)
+	console.log (video.currentTime)
 	video.currentTime = video_current_time;
 
 	wait_flag = 1;

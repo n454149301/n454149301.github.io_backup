@@ -42,13 +42,8 @@ var video_current_time = 0;
 
 video.ontimeupdate = function () {
 	if (video.currentTime == video.duration) {
-			console.log ("fuck1")
-			console.log (video.currentTime);
-			console.log (video_current_time);
+		video_current_time = 0;
 	} else {
-			console.log ("fuck2")
-			console.log (video.currentTime);
-			console.log (video_current_time);
 		video_current_time = video.currentTime;
 	}
 }
@@ -64,11 +59,6 @@ video.onended = function () {
 	video.src = window.URL.createObjectURL (blob);
 	video.currentTime = video_current_time;
 
-	console.log ("fuck");
-	console.log (video.error)
-	console.log (video.currentTime);
-	console.log (video_current_time);
-	console.log ("fuck end");
 	wait_flag = 1;
 	setTimeout(function () {
 		video.play ();
@@ -78,21 +68,21 @@ video.onended = function () {
 
 function get_video (file_num, video_num) {
 	xhr=new XMLHttpRequest();
-	console.log ("GET", 'https://raw.githubusercontent.com/n454149301/web_database_dongman' + list_num + '_' + index + '/master/' + video_num + '/' + file_num + '.mkv', true);
+	// console.log ("GET", 'https://raw.githubusercontent.com/n454149301/web_database_dongman' + list_num + '_' + index + '/master/' + video_num + '/' + file_num + '.mkv', true);
 	xhr.open ("GET", 'https://raw.githubusercontent.com/n454149301/web_database_dongman' + list_num + '_' + index + '/master/' + video_num + '/' + file_num + '.mkv', true);
 	xhr.responseType = 'blob';
 
 	xhr.onload = function (e) {
 			if ((this.response.type === "text/xml") || (this.response.type === "text/html")) {
-			console.log (video.currentTime);
+			// console.log (video.currentTime);
 			video.src = window.URL.createObjectURL (blob);
 			video.autoplay = true;
 			}
 
-			console.log (video_data)
+			// console.log (video_data)
 			video_data[file_num] = this.response;
-			console.log (video_data)
-			console.log (video_data[0])
+			// console.log (video_data)
+			// console.log (video_data[0])
 			document.getElementById ("ready_get_num").innerHTML = file_num;
 
 			if (file_num == 0) {

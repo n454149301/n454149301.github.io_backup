@@ -63,12 +63,15 @@ video.onended = function () {
 	wait_flag = 1;
 	video.play ();
 	setTimeout(function () {
+		video.currentTime = video_current_time;
 		wait_flag = 0;
+		video.play ();
 	}, 5000);
 }
 
 function get_video (file_num, video_num) {
 	xhr=new XMLHttpRequest();
+	var fileReader = new FileReader ();
 	// console.log ("GET", 'https://raw.githubusercontent.com/n454149301/web_database_dongman' + list_num + '_' + index + '/master/' + video_num + '/' + file_num + '.mkv', true);
 	xhr.open ("GET", 'https://raw.githubusercontent.com/n454149301/web_database_dongman' + list_num + '_' + index + '/master/' + video_num + '/' + file_num + '.mkv', true);
 	xhr.responseType = 'blob';
@@ -82,7 +85,6 @@ function get_video (file_num, video_num) {
 
 			// console.log (video_data)
 			video_data[file_num] = this.response;
-			// console.log (video_data)
 			// console.log (video_data[0])
 			document.getElementById ("ready_get_num").innerHTML = file_num;
 

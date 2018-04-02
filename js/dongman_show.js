@@ -81,6 +81,9 @@ function get_video (file_num, video_num) {
 		video_data.splice(0, video_data.length);
 		video_data.lenght = 0;
 		video_current_time = 0;
+		console.log (video_data);
+		wait_flag = 0;
+		video.onended ();
 	}
 
 	if (now_video_num != video_num) {

@@ -89,6 +89,10 @@ function get_video (file_num, video_num) {
 			video.autoplay = true;
 			}
 
+			if (file_num == 0) {
+				video_data = [];
+			}
+
 			// console.log (video_data)
 			video_data[file_num] = this.response;
 			// console.log (video_data[0])

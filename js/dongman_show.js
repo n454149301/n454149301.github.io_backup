@@ -76,11 +76,15 @@ function get_video (file_num, video_num) {
 	}
 
 	if (file_num == 0) {
-		video_data = "";
+		now_video_num = video_num;
+		video_data = [];
 		video_current_time = 0;
 	}
 
-	now_video_num = video_num;
+	if (now_video_num != video_num) {
+		return;
+	}
+
 	xhr=new XMLHttpRequest();
 	var fileReader = new FileReader ();
 	// console.log ("GET", 'https://raw.githubusercontent.com/n454149301/web_database_dongman' + list_num + '_' + index + '/master/' + video_num + '/' + file_num + '.mkv', true);

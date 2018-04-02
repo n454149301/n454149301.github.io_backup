@@ -76,8 +76,10 @@ function get_video (file_num, video_num) {
 	}
 
 	if (file_num == 0) {
+		window.stop ();
 		now_video_num = video_num;
-		video_data = [];
+		video_data.splice(0, video_data.length);
+		video_data.lenght = 0;
 		video_current_time = 0;
 	}
 

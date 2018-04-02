@@ -57,8 +57,8 @@ video.onended = function () {
 	var blob = new Blob (video_data, {type: 'video/mkv'});
 
 	video.src = window.URL.createObjectURL (blob);
-	console.log (video_current_time)
-	console.log (video.currentTime)
+	// console.log (video_current_time)
+	// console.log (video.currentTime)
 	video.currentTime = video_current_time;
 
 	wait_flag = 1;

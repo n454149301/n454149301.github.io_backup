@@ -147,6 +147,8 @@ function get_list () {
 }
 
 function get_video_all (file_num, video_num) {
+	document.getElementById ("ready_name").innerHTML = video_num;
+
 	xhr = new XMLHttpRequest ();
 	xhr.open ("GET", '../dongman/' + list_num + '/' + index + '/' + video_num + '/list.txt', true);
 	xhr.onreadystatechange = function (e) {

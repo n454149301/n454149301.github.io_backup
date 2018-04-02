@@ -75,6 +75,11 @@ function get_video (file_num, video_num) {
 		return;
 	}
 
+	if (file_num == 0) {
+		video_data = "";
+		video_current_time = 0;
+	}
+
 	now_video_num = video_num;
 	xhr=new XMLHttpRequest();
 	var fileReader = new FileReader ();
@@ -87,11 +92,6 @@ function get_video (file_num, video_num) {
 			// console.log (video.currentTime);
 			video.src = window.URL.createObjectURL (blob);
 			video.autoplay = true;
-			}
-
-			if (file_num == 0) {
-				video_data = [];
-				video_current_time = 0;
 			}
 
 			// console.log (video_data)

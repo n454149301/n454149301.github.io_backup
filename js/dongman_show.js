@@ -91,6 +91,7 @@ function get_video (file_num, video_num) {
 
 			if (file_num == 0) {
 				video_data = [];
+				video_current_time = 0;
 			}
 
 			// console.log (video_data)

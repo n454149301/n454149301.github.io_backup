@@ -134,7 +134,7 @@ function get_list () {
 			if (xhr.status == 200) {
 				for (let i = 1; i <= parseInt (xhr.responseText); i++) {
 					var button = document.createElement ("button");
-					button.setAttribute ("onclick", "get_video(0, " + i + ")");
+					button.setAttribute ("onclick", "get_video_all(0, " + i + ")");
 					button.innerHTML = "第" + i + "集";
 					article.appendChild (button);
 					get_track (i);
@@ -146,23 +146,19 @@ function get_list () {
 	xhr.send ()
 }
 
-function get_num () {
-	xhr=new XMLHttpRequest();
-	xhr.open ("GET", '../dongman/' + list_num + '/' + index + '/list.txt', true);
+function get_video_all (file_num, video_num) {
+	xhr = new XMLHttpRequest ();
+	xhr.open ("GET", '../dongman/' + list_num + '/' + index + '/' + video_num + '/list.txt', true);
 	xhr.onreadystatechange = function (e) {
 		if (xhr.readyState == 4) {
 			if (xhr.status == 200) {
-				for (let i = 1; i <= parseInt (xhr.responseText); i++) {
-					var button = document.createElement ("button");
-					button.setAttribute ("onclick", "get_video(0, " + i + ")");
-					button.innerHTML = "第" + i + "集";
-					article.appendChild (button);
-				}
+				document.getElementById ("ready_all_num").innerHTML = xhr.responseText;
+
+				get_video (file_num, video_num);
 			}
 		}
 	}
-
-	xhr.send ()
+	xhr.send ();
 }
 
 function get_track (video_num) {

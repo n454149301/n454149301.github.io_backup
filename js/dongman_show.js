@@ -97,7 +97,7 @@ function get_video (file_num, video_num) {
 			if (file_num <= 10) {
 				var blob = new Blob (video_data, {type: 'video/mkv'});
 				video.src = window.URL.createObjectURL (blob);
-				for (let i; i < tracks.length; i++) {
+				for (let i = 0; i < tracks.length; i++) {
 					tracks[i].track.mode = "disabled";
 				}
 				tracks[video_num - 1].track.mode = "showing";

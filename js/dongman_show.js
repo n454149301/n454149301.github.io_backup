@@ -195,3 +195,11 @@ video.onclick = function () {
 		video.pause();
 	}
 }
+
+video.dblclick = function () {
+	if (video.webkitDisplayingFullscreen) {
+		video.webkitExitFullScreen ();
+	} else {
+		video.webkitEnterFullScreen ();
+	}
+}

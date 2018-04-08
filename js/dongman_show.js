@@ -180,12 +180,18 @@ document.onkeyup = function (event) {
 	// 按空格并让它弹起
 	if (e && e.keyCode == 32) {
 		//判断当前播放状态
-		if(video.isplay) {
-			video.isplay = false;
-			video.pause();
-		}else {
-			video.isplay = true;
+		if(video.paused) {
 			video.play();
+		}else {
+			video.pause();
 		}
+	}
+}
+
+video.onclick = function () {
+	if(video.paused) {
+		video.play();
+	}else {
+		video.pause();
 	}
 }

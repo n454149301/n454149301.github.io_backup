@@ -174,3 +174,18 @@ function get_track (video_num) {
 }
 
 get_list ();
+
+document.onkeyup = function (event) {
+	var e = event || window.event || arguments.callee.caller.arguments[0];
+	// 按空格并让它弹起
+	if (e && e.keyCode == 32) {
+		//判断当前播放状态
+		if(video.isplay) {
+			video.isplay = false;
+			video.pause();
+		}else {
+			video.isplay = true;
+			video.play();
+		}
+	}
+}

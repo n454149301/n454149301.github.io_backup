@@ -185,6 +185,12 @@ document.onkeydown = function (event) {
 		}else {
 			video.pause();
 		}
+	} else if (e && e.keyCode == 37) {
+		video.currentTime = video.currentTime - 10;
+		video.play ();
+	} else if (e && e.keyCode == 39) {
+		video.currentTime = video.currentTime + 10;
+		video.play ();
 	}
 }
 

@@ -203,7 +203,6 @@ video.onclick = function () {
 }
 
 video.ondblclick = function () {
-		console.log ("ofjioaw");
 	if (video.webkitDisplayingFullscreen) {
 		video.webkitExitFullScreen ();
 	} else {

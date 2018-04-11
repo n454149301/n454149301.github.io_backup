@@ -186,10 +186,10 @@ document.onkeydown = function (event) {
 			video.pause();
 		}
 	} else if (e && e.keyCode == 37) {
-		video.currentTime = video.currentTime - 10;
+		video.currentTime = parseInt (video.currentTime) - 10;
 		video.play ();
 	} else if (e && e.keyCode == 39) {
-		video.currentTime = video.currentTime + 10;
+		video.currentTime = parseInt (video.currentTime) + 10;
 		video.play ();
 	}
 }

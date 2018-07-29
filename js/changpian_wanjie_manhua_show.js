@@ -97,6 +97,9 @@ function get_manhua (num) {
 	// xhr.open ("GET", "../manhua/" + list_num + "/" + name + "/" + name + num + ".jpg");
 	xhr.open ("GET", "https://raw.githubusercontent.com/n454149301/web_database_changpian_wanjie_manhua" + list_num + "/master/manhua/" + name + "/" + ("0000" + index).substr (-4) + "/" + ("000" + (num + 1)).substr (-3) + ".jpg");
 	xhr.responseType = 'blob';
+	xhr.onerror = function (e) {
+		get_manhua (num);
+	}
 	xhr.onload = function (e) {
 		if (xhr.readyState == 4) {
 			if (xhr.status == 200) {

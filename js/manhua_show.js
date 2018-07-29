@@ -63,6 +63,9 @@ function get_manhua (num) {
 	// xhr.open ("GET", "../manhua/" + list_num + "/" + name + "/" + name + num + ".jpg");
 	xhr.open ("GET", "https://raw.githubusercontent.com/n454149301/web_database_duanpian_lingsui_manhua" + list_num + "/master/manhua/" + name + "/" + name + num + ".jpg");
 	xhr.responseType = 'blob';
+	xhr.onerror = function (e) {
+		get_manhua (num);
+	}
 	xhr.onload = function (e) {
 		if (xhr.readyState == 4) {
 			if (xhr.status == 200) {

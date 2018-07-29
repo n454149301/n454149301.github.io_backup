@@ -96,31 +96,35 @@ function get_video (file_num, video_num) {
 	xhr.open ("GET", 'https://raw.githubusercontent.com/n454149301/web_database_dongman' + list_num + '_' + index + '/master/' + video_num + '/' + file_num + '.mkv', true);
 	xhr.responseType = 'blob';
 
+	xhr.onerror = function (e) {
+		get_video (file_num, viede_num);
+	}
+
 	xhr.onload = function (e) {
-			if ((this.response.type === "text/xml") || (this.response.type === "text/html")) {
-			// console.log (video.currentTime);
-			video.src = window.URL.createObjectURL (blob);
-			video.autoplay = true;
-			}
-
-			// console.log (video_data)
-			video_data[file_num] = this.response;
-			// console.log (video_data[0])
-			document.getElementById ("ready_get_num").innerHTML = file_num;
-
-			if (file_num <= 10) {
-				var blob = new Blob (video_data, {type: 'video/mkv'});
-				video.src = window.URL.createObjectURL (blob);
-				for (let i = 0; i < tracks.length; i++) {
-					tracks[i].track.mode = "disabled";
-				}
-				tracks[video_num - 1].track.mode = "showing";
-				video.currentTime = video_current_time;
-				video.play ();
-			}
-			get_video (file_num + 1, video_num);
-
+		if ((this.response.type === "text/xml") || (this.response.type === "text/html")) {
+		// console.log (video.currentTime);
+		video.src = window.URL.createObjectURL (blob);
+		video.autoplay = true;
 		}
+
+		// console.log (video_data)
+		video_data[file_num] = this.response;
+		// console.log (video_data[0])
+		document.getElementById ("ready_get_num").innerHTML = file_num;
+
+		if (file_num <= 10) {
+			var blob = new Blob (video_data, {type: 'video/mkv'});
+			video.src = window.URL.createObjectURL (blob);
+			for (let i = 0; i < tracks.length; i++) {
+				tracks[i].track.mode = "disabled";
+			}
+			tracks[video_num - 1].track.mode = "showing";
+			video.currentTime = video_current_time;
+			video.play ();
+		}
+		get_video (file_num + 1, video_num);
+
+	}
 
 	xhr.send ()
 }

@@ -1,6 +1,5 @@
 var video_data = [];
 var now_video_num = 0;
-window.sign_file_num = 0;
 
 var url = window.location.search
 if (url.indexOf("?") == -1) {
@@ -67,19 +66,11 @@ video.onended = function () {
 	setTimeout(function () {
 		video.currentTime = video_current_time;
 		wait_flag = 0;
-
-		window.sign_file_num = Math.ceil (video.duration / video.currentTime);
-
 		video.play ();
 	}, 5000);
 }
 
 function get_video (file_num, video_num) {
-	if (window.sign_file_num != 0) {
-		file_num = window.sign_file_num - 6;
-		window.sign_file_num = 0;
-	}
-
 	if ((file_num == 0) && (now_video_num == video_num)) {
 		return;
 	}

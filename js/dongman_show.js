@@ -90,6 +90,10 @@ function get_video (file_num, video_num) {
 		return;
 	}
 
+	if (video_data[file_num] != null) {
+		return;
+	}
+
 	xhr=new XMLHttpRequest();
 	var fileReader = new FileReader ();
 	// console.log ("GET", 'https://raw.githubusercontent.com/n454149301/web_database_dongman' + list_num + '_' + index + '/master/' + video_num + '/' + file_num + '.mkv', true);

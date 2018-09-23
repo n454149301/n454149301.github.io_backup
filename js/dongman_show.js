@@ -71,9 +71,11 @@ video.onended = function () {
 }
 
 function get_video (file_num, video_num) {
+	/*
 	if ((file_num == 0) && (now_video_num == video_num)) {
 		return;
 	}
+	*/
 
 	if (file_num == 0) {
 		window.stop ();
@@ -86,11 +88,14 @@ function get_video (file_num, video_num) {
 		video.onended ();
 	}
 
+	/*
 	if (now_video_num != video_num) {
 		return;
 	}
+	*/
 
 	if (video_data[file_num] != null) {
+		get_video (file_num + 1, video_num);
 		return;
 	}
 

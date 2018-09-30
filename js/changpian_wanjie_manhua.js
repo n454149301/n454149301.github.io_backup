@@ -15,7 +15,7 @@ window.addEventListener ("scroll", function (e) {
 var page_max_manhua_num = 20;
 
 // 漫画列表数量
-var manhua_list_num = 22;
+var manhua_list_num = 23;
 
 // 漫画列表总表
 var manhua_list = [];
